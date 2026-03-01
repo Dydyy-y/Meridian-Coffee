@@ -70,7 +70,7 @@ export const Navbar = () => {
           onClick={() => navigate('/')}
           flexShrink={0}
         >
-          Elegant Heritage
+          Meridian Coffee
         </Heading>
 
         {/* Navigation desktop */}
@@ -201,7 +201,7 @@ export const Navbar = () => {
           <DrawerCloseButton color="primary.900" top={4} right={4} />
           <DrawerHeader borderBottomWidth="1px" borderColor="gray.200" pb={3}>
             <Heading size="md" fontFamily="heading" color="primary.900">
-              Elegant Heritage
+              Forest Roast
             </Heading>
           </DrawerHeader>
 

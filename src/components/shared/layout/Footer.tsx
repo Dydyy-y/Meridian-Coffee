@@ -6,7 +6,7 @@ export const Footer = () => {
       <Container maxW="container.xl">
         <VStack spacing={5}>
           <Heading size="lg" fontFamily="heading" color="white">
-            Elegant Heritage
+            Meridian Coffee
           </Heading>
           <Flex
             gap={{ base: 4, sm: 8 }}
@@ -25,7 +25,7 @@ export const Footer = () => {
             </Text>
           </Flex>
           <Text fontSize="small" color="gray.300" textAlign="center">
-            © 2026 Elegant Heritage Coffee. Tous droits réservés.
+            © 2026 Forest Roast. Tous droits réservés.
           </Text>
         </VStack>
       </Container>
