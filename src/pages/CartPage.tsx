@@ -113,11 +113,6 @@ export const CartPage = () => {
                     <Text fontWeight="600" color="primary.900" fontSize="md">
                       {product.name}
                     </Text>
-                    {product.origin?.country && (
-                      <Text fontSize="sm" color="gray.500">
-                        {product.origin.country}
-                      </Text>
-                    )}
                     <Text fontWeight="700" color="primary.900" fontSize="lg">
                       {product.price.toFixed(2)} €
                     </Text>
