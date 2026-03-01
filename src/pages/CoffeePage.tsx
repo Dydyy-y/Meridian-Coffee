@@ -39,14 +39,15 @@ import type { Product, RoastLevel } from '../types/product.types';
 import { ROAST_LABELS } from '../constants/product.constants';
 
 const COFFEE_METADATA: Record<string, { roastLevel: RoastLevel; tastingNotes: string[] }> = {
-  'Éthiopie Yirgacheffe': { roastLevel: 'light', tastingNotes: ['jasmin', 'bergamote', 'fruits rouges'] },
-  'Kenya AA Nyeri': { roastLevel: 'light', tastingNotes: ['cassis', 'pamplemousse rose', 'tomate confite'] },
-  'Brésil Cerrado': { roastLevel: 'medium-dark', tastingNotes: ['noisette', 'chocolat', 'pain d\'épices'] },
-  'Colombie Huila': { roastLevel: 'medium', tastingNotes: ['pomme verte', 'sucre roux', 'amande'] },
-  'Honduras Santa Bárbara': { roastLevel: 'medium', tastingNotes: ['pêche', 'caramel', 'cacao'] },
-  'Mexique Chiapas': { roastLevel: 'medium', tastingNotes: ['mandarine', 'miel', 'chocolat blanc'] },
-  'Indonésie Sumatra Mandheling': { roastLevel: 'dark', tastingNotes: ['cèdre', 'chocolat amer', 'épices'] },
-  'Indonésie Sulawesi Toraja': { roastLevel: 'medium-dark', tastingNotes: ['tabac', 'vanille', 'réglisse'] },
+  'Ethiopia Yirgacheffe':     { roastLevel: 'light',       tastingNotes: ['jasmin', 'agrumes', 'pêche blanche'] },
+  'Colombia Huila':           { roastLevel: 'medium',      tastingNotes: ['caramel', 'noisette', 'fruits rouges'] },
+  'Kenya AA':                 { roastLevel: 'light',       tastingNotes: ['cassis', 'tomate', 'pamplemousse'] },
+  'Guatemala Antigua':        { roastLevel: 'dark',        tastingNotes: ['chocolat noir', 'cannelle', 'fumée'] },
+  'Brazil Santos Moulu':      { roastLevel: 'medium',      tastingNotes: ['noix', 'chocolat au lait', 'vanille'] },
+  'Espresso Intenso Moulu':   { roastLevel: 'dark',        tastingNotes: ['cacao amer', 'réglisse', 'épices'] },
+  'Décaf Colombia':           { roastLevel: 'medium',      tastingNotes: ['caramel', 'noisette', 'fruits rouges'] },
+  'Dosettes Ethiopia x16':    { roastLevel: 'light',       tastingNotes: ['jasmin', 'agrumes', 'pêche blanche'] },
+  'Dosettes Espresso Intenso x16': { roastLevel: 'dark',  tastingNotes: ['cacao amer', 'réglisse', 'épices'] },
 };
 
 const AROMA_PROFILES: Record<string, string[]> = {
