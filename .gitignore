@@ -1,21 +1,5 @@
-# Perso
-_bmad/
-_bmad-output/
-_bmadad/
-.github/
-.vscode/
-docs/
-product-brief-ecommerce.md
-PROJECT-LOG.md
-Roadmap.md
-sprint-status.yaml
-DESIGN-SYSTEM.md
-
-README.md
-readme.md
-Readme.md
-
 node_modules/
+18_06_ecom/
 
 # Build / sortie de production (Vite génère 'dist' par défaut)
 dist/
