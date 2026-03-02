@@ -5,7 +5,6 @@ export interface QueryParams {
   [key: string]: string | number | boolean | undefined;
 }
 
-//réponse API paginée
 export interface PaginatedResponse<T> {
   data: T[];
   total: number;
@@ -14,7 +13,7 @@ export interface PaginatedResponse<T> {
 }
 
 export abstract class BaseService<T> {
-  protected readonly baseUrl: string; //baseurl : stocker api
+  protected readonly baseUrl: string;
   protected readonly endpoint: string;
 
   constructor(
@@ -30,7 +29,7 @@ export abstract class BaseService<T> {
     return `${this.baseUrl}${this.endpoint}${path}`;
   }
 
-  //traiter la réponse d'une requette http
+  //Traitement réponse http
   protected async handleResponse<R = T>(response: Response): Promise<R> {
     if (!response.ok) {
       let errorMessage = `HTTP Error ${response.status}: ${response.statusText}`;
@@ -47,18 +46,27 @@ export abstract class BaseService<T> {
     //parser erreurs
     const json = await response.json();
 
-    // si la réponse contient des produits ou objets avec associations,
-    // on convertit les clés capitalisées en minuscules pour plus de
-    // cohérence avec les interfaces TypeScript (Images -> images,
-    // Category -> category, etc.). Cette fonction est généreuse et va
-    // opérer récursivement sur tableaux ou objets simples.
-    const normalize = (obj: any): any => {
+    /**
+     * Si l'API renvoie des objets avec des associations Sequelize
+     * (Images, Category, Origin, …), transforme les clés d'objet
+     * en minuscules pour les faire correspondre aux interfaces
+     * clientes. La normalisation est appliquée récursivement à toutes
+     * les valeurs qui sont soit des objets, soit des tableaux.
+     *
+     * Exemple: `{ Images: [...], Category: {...} }` devient
+     * `{ images: [...], category: {...} }`.
+     *
+     * @param obj Valeur à normaliser
+     * @returns Valeur normalisée
+     */
+    const normalize = (obj: unknown): unknown => {
       if (Array.isArray(obj)) {
+        // obj is unknown[] here
         return obj.map(normalize);
       }
       if (obj && typeof obj === 'object') {
-        const copy: any = {};
-        Object.entries(obj).forEach(([k, v]) => {
+        const copy: Record<string, unknown> = {};
+        Object.entries(obj as Record<string, unknown>).forEach(([k, v]) => {
           let key = k;
           // exemple d'associations retournées par Sequelize
           if (k === 'Images') key = 'images';

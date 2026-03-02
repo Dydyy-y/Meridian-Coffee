@@ -4,8 +4,6 @@ import type { Cart } from '../types/cart.types';
 
 class CartService extends BaseService<Cart> {
   constructor() {
-    // endpoint '/carts' → les URLs seront construites avec buildUrl()
-    // ex: buildUrl('/user/42') → http://localhost:8080/api/carts/user/42
     super('/carts');
   }
 
@@ -29,19 +27,6 @@ class CartService extends BaseService<Cart> {
     }
   }
 
-  /**
-   * Retourne le nombre d'articles dans le panier d'un utilisateur
-   *
-   * GET /api/carts/user/{user_id}/count
-   * Authorization: Bearer <token>   ← REQUIRED
-   *
-   * Response 200 : number (entier)
-   * Response 500 : { error: string }
-   *
-   * Utile pour afficher un badge dans la navbar sans recharger le panier complet.
-   *
-   * @param userId l'id de l'utilisateur connecté
-   */
   async getCartItemCount(userId: number): Promise<number> {
     try {
       const response = await fetch(this.buildUrl(`/user/${userId}/count`), {
@@ -60,16 +45,6 @@ class CartService extends BaseService<Cart> {
   }
 
   /**
-   * Ajoute un produit au panier
-   *
-   * POST /api/carts/{cart_id}/products/{product_id}
-   * Authorization: Bearer <token>   ← REQUIRED
-   * ⚠️ Pas de body JSON nécessaire — tout est dans l'URL
-   *
-   * Response 200 : Cart mis à jour (avec Products[] actualisé)
-   * Response 404 : "Cart or product not found" (text/plain !)
-   * Response 500 : { error: string }
-   *
    * @param cartId    l'id du panier (depuis Cart.id)
    * @param productId l'id du produit à ajouter
    */
@@ -81,7 +56,6 @@ class CartService extends BaseService<Cart> {
         this.buildUrl(`/${cartId}/products/${productId}`),
         {
           method: 'POST',
-          // contentType: 'none' → pas de Content-Type header, pas de body
           headers: getHeaders({ includeAuth: true, contentType: 'none' }),
         }
       );
@@ -94,15 +68,6 @@ class CartService extends BaseService<Cart> {
   }
 
   /**
-   * Retire un produit du panier
-   *
-   * DELETE /api/carts/{cart_id}/products/{product_id}
-   * Authorization: Bearer <token>   ← REQUIRED
-   *
-   * Response 200 : Cart mis à jour (avec Products[] actualisé)
-   * Response 404 : "Cart or product not found" (text/plain !)
-   * Response 500 : { error: string }
-   *
    * @param cartId    l'id du panier
    * @param productId l'id du produit à retirer
    */

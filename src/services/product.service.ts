@@ -44,7 +44,6 @@ class ProductService extends BaseService<Product> {
   /**
    * Méthode helper pour simplifier la recherche par catégorie
    * C'est un raccourci pour search({ category })
-   *
    * @param category nom de la catégorie
    * @returns produits de cette catégorie
    */
@@ -59,7 +58,7 @@ class ProductService extends BaseService<Product> {
    * @returns produits dans cette fourchette
    */
   async getByPriceRange(minPrice: number, maxPrice: number): Promise<Product[]> {
-    console.log(`💰 Fetching products between ${minPrice}€ and ${maxPrice}€`);
+    console.log(`Fetching products between ${minPrice}€ and ${maxPrice}€`);
     return this.search({ minPrice, maxPrice });
   }
 
