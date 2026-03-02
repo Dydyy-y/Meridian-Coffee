@@ -1,5 +1,6 @@
 node_modules/
 18_06_ecom/
+.vite/
 
 # Build / sortie de production (Vite génère 'dist' par défaut)
 dist/
