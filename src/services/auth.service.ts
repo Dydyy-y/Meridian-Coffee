@@ -4,7 +4,6 @@ import type { AuthUser, SignUpRequest, SignInRequest, SignInResponse } from '../
 
 class AuthService extends BaseService<AuthUser> {
   constructor() {
-    // endpoint '/users' → les URLs seront : {baseUrl}/users/signup et {baseUrl}/users/signin
     super('/users');
   }
 
@@ -25,12 +24,12 @@ class AuthService extends BaseService<AuthUser> {
         body: JSON.stringify(data),
       });
 
-      // Gestion erreur : on lit la réponse manuellement pour gérer text/plain ET JSON
+      // Gestion erreur
       if (!response.ok) {
         const errorText = await response.text();
         let message = `Erreur lors de l'inscription (${response.status})`;
         try {
-          // Essayer de parser comme JSON (cas 500 Sequelize, etc.)
+          // Essayer de parser comme JSON
           const errorJson = JSON.parse(errorText);
           if (errorJson.name === 'SequelizeValidationError' && Array.isArray(errorJson.errors) && errorJson.errors.length > 0) {
             // Traduire les erreurs de validation Sequelize
@@ -48,7 +47,7 @@ class AuthService extends BaseService<AuthUser> {
             message = errorJson.message || errorJson.error || message;
           }
         } catch {
-          // Pas du JSON → message générique
+          //message générique
         }
         throw new Error(message);
       }
@@ -71,32 +70,21 @@ class AuthService extends BaseService<AuthUser> {
       const response = await fetch(this.buildUrl('/signin'), {
         method: 'POST',
         headers: getHeaders({
-          includeAuth: false,   // pas de token au signin, on essaie de l'obtenir
+          includeAuth: false,   // pas de token au signin
           contentType: 'json',
         }),
         body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        // 401 renvoie text/plain "Authentication failed", pas du JSON
-        // On utilise .text() pour éviter une erreur de parsing JSON
-        const errorText = await response.text();
+        const errorText = await response.text(); // On utilise .text() pour éviter une erreur de parsing JSON
         let message = errorText;
         try {
           const errorJson = JSON.parse(errorText);
           message = errorJson.message || errorJson.error || message;
         } catch {
-          // Pas du JSON (cas 401) → garder le texte brut
+          //garder le texte brut
         }
-
-        // Traduction des messages d'erreur API (en anglais) en français
-        const traductions: Record<string, string> = {
-          'User not found': 'Aucun compte trouvé avec cet email.',
-          'Authentication failed': 'Email ou mot de passe incorrect.',
-          'Invalid password': 'Mot de passe incorrect.',
-          'Unauthorized': 'Email ou mot de passe incorrect.',
-        };
-        message = traductions[message.trim()] ?? message ?? `Erreur d'authentification (${response.status})`;
         throw new Error(message);
       }
 
@@ -108,5 +96,4 @@ class AuthService extends BaseService<AuthUser> {
   }
 }
 
-// Instance singleton exportée — même pattern que productService
 export const authService = new AuthService();
