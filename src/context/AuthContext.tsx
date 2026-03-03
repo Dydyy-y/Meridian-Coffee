@@ -11,7 +11,7 @@ interface AuthContextType {
   updateUser: (user: AuthUser) => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined); //undefined : défault car permet de détecter si useAuth() est appelé hors du Provider
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 //convention : sert à définir et typer précisément les props que doit recevoir le composant <AuthProvider> (ici, uniquement son children)
 interface AuthProviderProps {
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useLocalStorage<AuthUser | null>("auth_user", null);
   const isAuthenticated = token !== null && token !== "";
 
-  const login = useCallback(  //useCallback : mémorise la fonction login pour éviter les re-créations inutiles à chaque render ; prends en entrée une fonction et un tableau de dépendances
+  const login = useCallback( 
     (newToken: string, newUser: AuthUser) => {
       setToken(newToken);
       setUser(newUser);

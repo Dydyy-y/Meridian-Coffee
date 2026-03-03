@@ -15,11 +15,11 @@ import type { Product } from '../types/product.types';
 interface ProductCardProps {
   product: Product;
   onAddToCart?: (productId: number) => void; //callback pour ajouter au panier
-  onCardClick?: (productId: number) => void; //pour naviguer vers la page détail
+  onCardClick?: (productId: number) => void; //naviguer vers la page détail
 }
 
 export const ProductCard = ({ product, onAddToCart, onCardClick }: ProductCardProps) => {
-  // Clic sur le bouton "Ajouter" : stoppe la propagation pour ne pas déclencher onCardClick
+  //stoppe la propagation pour ne pas déclencher onCardClick
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation(); // empêche le clic de remonter vers la Card
     if (onAddToCart) {
@@ -27,7 +27,7 @@ export const ProductCard = ({ product, onAddToCart, onCardClick }: ProductCardPr
     }
   };
 
-  // Clic sur la card entière → naviguer vers la page détail
+  // Clic sur la card entière = naviguer vers la page détail
   const handleCardClick = () => {
     if (onCardClick) {
       onCardClick(product.id);

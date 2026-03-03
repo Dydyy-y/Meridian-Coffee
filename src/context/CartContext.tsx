@@ -25,7 +25,7 @@ interface CartProviderProps {
   children: ReactNode;
 }
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const { isAuthenticated, user } = useAuth(); // Lire l'état d'auth depuis AuthContext
+  const { isAuthenticated, user } = useAuth(); //Lire auth depuis AuthContext
 
   const [cart, setCart] = useState<Cart | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);

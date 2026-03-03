@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import type { ReactNode } from 'react';
 
 interface ProtectedRouteProps {
-  children: ReactNode; //ReactNode : type générique de react qui englobe tout ce qui peut être rendu (JSX, string, number, etc.)
+  children: ReactNode;
 }
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
