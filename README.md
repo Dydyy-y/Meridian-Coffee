@@ -1,4 +1,4 @@
-# Forest Roast — E-commerce de café torréfié
+# Meridian-Coffee — E-commerce de café torréfié
 
 Application e-commerce complète dédiée à la vente de cafés torréfiés, construite avec **React 18 + TypeScript** côté client et **Node.js + Express + Sequelize** côté API.
 
@@ -22,7 +22,7 @@ Application e-commerce complète dédiée à la vente de cafés torréfiés, con
 
 ## Aperçu du projet
 
-Forest Roast est une boutique en ligne permettant aux utilisateurs de :
+Meridian-Coffee est une boutique en ligne permettant aux utilisateurs de :
 
 - Parcourir un catalogue de cafés avec filtres et détails produits
 - Gérer un panier d'achats persistant
